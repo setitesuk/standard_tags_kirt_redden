@@ -1,8 +1,12 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="https://nanoporetech.com/css/new.css?v13"/>
     <link rel="stylesheet" type="text/html" href="http://cdn.foundation5.zurb.com/foundation.css"/>
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/foundation.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
 
@@ -18,9 +22,9 @@
 
     <div class="column section-title">
         <h2>Annotation Tags</h2>
+
         <p>Kirt Redden</p>
     </div>
-
 
     <ul id="standard-tags-container" class="section small-block-grid-1">
 
@@ -41,9 +45,10 @@
 
     <a class="tag-button button small expand" id="text-confirm">Update Text</a>
     <a class="tag-button button small expand" id="text-copy">Copy Text</a>
-
     <a class="close-reveal-modal" id="modal-close">&#215;</a>
 </div>
+
+<div id="modal-background-overlay"><span></span></div>
 
 <script type="text/javascript">
     var annotation_tags = {
@@ -71,9 +76,7 @@
     };
 </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="http://cdn.foundation5.zurb.com/foundation.js"></script>
-<script type="text/javascript" src="tagManipulator.js"></script>
+<script type="text/javascript" src="scripts/tagManipulator.js"></script>
 
 </body>
 </html>
