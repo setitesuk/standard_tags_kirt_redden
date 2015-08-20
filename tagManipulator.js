@@ -2,24 +2,27 @@
 
 (function () {
 
-    var aUnsortedTags = annotation_tags.annotation_tags;
-    var aSplitTags = [];
+    var aUnsortedTags       = annotation_tags.annotation_tags;
+    var aSplitTags          = [];
 
     var iStandardTagsLength = annotation_tags.annotation_tags.length;
-    var iTagNumber;
 
-    var oModalInputField = "<input type='text' value=''>";
-    var oModalTip = document.getElementById('modal-copy-tip');
+    var oModalClose         = document.getElementById('modal-close');
+    var oModalInputField    = "<input type='text' value=''>";
+    var oModalTip           = document.getElementById('modal-copy-tip');
+    var oModalTextConfirm   = document.getElementById('text-confirm');
     var oModalTextContainer = document.getElementById('modal-text-container');
-    var oPopupModal = document.getElementById('text-modal');
-    var oTagsContainer = document.getElementById('standard-tags-container');
-    var oTextCopyButton = document.getElementById('text-copy');
+    var oPopupModal         = document.getElementById('text-modal');
+    var oTagsContainer      = document.getElementById('standard-tags-container');
+    var oTextCopyButton     = document.getElementById('text-copy');
 
-    var sMatchedType = "";
+    var sMatchedType        = "";
+    var sUnmatchedType      = "";
+
+    var iTagNumber;
     var sModalText;
     var sSortedString;
     var sTagText;
-    var sUnmatchedType = "";
 
     var i;
     var j;
@@ -69,19 +72,28 @@
             }
         }
 
-        document.getElementById('modal-close').addEventListener("click", hideModal, false);
+        if (oModalClose) {
+            oModalClose.addEventListener("click", hideModal, false);
+        }
 
-        document.getElementById('text-confirm').addEventListener("click", updateModalText, false);
+        if (oModalTextConfirm) {
+            oModalTextConfirm.addEventListener("click", updateModalText, false);
+        }
 
-        oTextCopyButton.addEventListener("click", copyModalText, false);
+        if (oTextCopyButton) {
+            oTextCopyButton.addEventListener("click", copyModalText, false);
+        }
 
     }
 
 
     function displayModal(event) {
         event.stopImmediatePropagation();
-        oPopupModal.style.display = "block";
-        oPopupModal.style.visibility = "visible";
+
+        if (oPopupModal) {
+            oPopupModal.style.display = "block";
+            oPopupModal.style.visibility = "visible";
+        }
 
         iTagNumber = this.id.substr(12);
         sTagText = document.getElementById('text-tag-' + iTagNumber).innerHTML;
@@ -92,22 +104,37 @@
 
     function hideModal(event) {
         event.stopImmediatePropagation();
-        oTextCopyButton.style.display = "none";
-        oModalTip.style.display = "none";
-        oPopupModal.style.display = "none";
-        oPopupModal.style.visibility = "hidden";
+
+        if(oTextCopyButton){
+            oTextCopyButton.style.display = "none";
+        }
+
+        if(oModalTip){
+            oModalTip.style.display = "none";
+        }
+
+        if(oPopupModal){
+            oPopupModal.style.display = "none";
+            oPopupModal.style.visibility = "hidden";
+        }
     }
 
 
     function updateModalText(event) {
         var oTextNode;
         event.stopImmediatePropagation();
-        oTextCopyButton.style.display = "block";
-        oModalTip.style.display = "block";
+
+        if(oTextCopyButton){
+            oTextCopyButton.style.display = "block";
+        }
+
+        if(oModalTip){
+            oModalTip.style.display = "block";
+        }
 
         sModalText = oModalTextContainer.innerHTML;
 
-        for (l = oModalTextContainer.children.length -1; l  >= 0; l -= 1) {
+        for (l = oModalTextContainer.children.length - 1; l >= 0; l -= 1) {
 
             var modalInput = oModalTextContainer.children[l];
             var modalInputValue = oModalTextContainer.children[l].value.trim();
