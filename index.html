@@ -1,33 +1,81 @@
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://nanoporetech.com/css/new.css?v13"/>
+    <link rel="stylesheet" type="text/html" href="http://cdn.foundation5.zurb.com/foundation.css"/>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
 
+<div class="new_header navbar navbar-default navbar-static-top">
+    <div class="new_center">
+        <div class="new_center_content">
+            <h1 id="logo" onclick="location.href='https://nanoporetech.com/';">&nbsp</h1>
+        </div>
+    </div>
+</div>
+
+<div class="row small-12 medium-10">
+
+    <div class="column section-title">
+        <h2>Annotation Tags</h2>
+        <p>Kirt Redden</p>
+    </div>
+
+
+    <ul id="standard-tags-container" class="section small-block-grid-1">
+
+    </ul>
+</div>
+
+<div id="text-modal" class="reveal-modal" data-reveal role="dialog">
+    <h5>Update Tag Text</h5>
+
+    <p id="modal-tip">enter your text into the input below, when you're happy click update text.</p>
+
+    <div id="modal-text-container"></div>
+
+    <p id="modal-copy-tip">
+        You can highlight the text above and copy it to your clip board
+        or click the Copy Text button below and follow the steps.
+    </p>
+
+    <a class="tag-button button small expand" id="text-confirm">Update Text</a>
+    <a class="tag-button button small expand" id="text-copy">Copy Text</a>
+
+    <a class="close-reveal-modal" id="modal-close">&#215;</a>
+</div>
+
 <script type="text/javascript">
+    var annotation_tags = {
+        "annotation_tags": [
+            'Type:\n[X] Clone Information\n[ ] Feature\nFeatures:\n[X] Start/End\n[ ] Single Clone Region\n[ ] SIL/TIL\n[ ] Repeat\nText:\nThis is the start of sequence clone {clone name}.',
 
-var annotation_tags = { "annotation_tags": [
-'Type:\n[X] Clone Information\n[ ] Feature\nFeatures:\n[X] Start/End\n[ ] Single Clone Region\n[ ] SIL/TIL\n[ ] Repeat\nText:\nThis is the start of sequence clone {clone name}.',
+            'Type:\n[ ] Clone Information\n[X] Feature\nFeatures:\n[ ] Start/End\n[X] Single Clone Region\n[ ] SIL/TIL\n[ ] Repeat\nText:',
 
-'Type:\n[ ] Clone Information\n[X] Feature\nFeatures:\n[ ] Start/End\n[X] Single Clone Region\n[ ] SIL/TIL\n[ ] Repeat\nText:',
+            'Type:\n[ ] Clone Information\n[X] Feature\nFeatures:\n[ ] Start/End\n[ ] Single Clone Region\n[ ] SIL/TIL\n[X] Repeat\nText:\nThis repeat is of Type {repeat type}. It has a length of {x}bp.',
 
-'Type:\n[ ] Clone Information\n[X] Feature\nFeatures:\n[ ] Start/End\n[ ] Single Clone Region\n[ ] SIL/TIL\n[X] Repeat\nText:\nThis repeat is of Type {repeat type}. It has a length of {x}bp.',
+            'Type:\n[X] Clone Information\n[ ] Feature\nFeatures:\n[X] Start/End\n[ ] Single Clone Region\n[ ] SIL/TIL\n[ ] Repeat\nText:\nThis is the end of sequence clone {clone name}.',
 
-'Type:\n[X] Clone Information\n[ ] Feature\nFeatures:\n[X] Start/End\n[ ] Single Clone Region\n[ ] SIL/TIL\n[ ] Repeat\nText:\nThis is the end of sequence clone {clone name}.',
+            'Type:\n[ ] Clone Information\n[X] Feature\nFeatures:\n[ ] Start/End\n[X] Single Clone Region\n[X] SIL/TIL\n[ ] Repeat\nText:\nM13 Short Insert Library of pUC {puc name}.',
 
-'Type:\n[ ] Clone Information\n[X] Feature\nFeatures:\n[ ] Start/End\n[X] Single Clone Region\n[X] SIL/TIL\n[ ] Repeat\nText:\nM13 Short Insert Library of pUC {puc name}.',
+            'Type:\n[ ] Clone Information\n[X] Feature\nFeatures:\n[ ] Start/End\n[X] Single Clone Region\n[X] SIL/TIL\n[ ] Repeat\nText:\npUC Short Insert Library of pUC {puc name}',
 
-'Type:\n[ ] Clone Information\n[X] Feature\nFeatures:\n[ ] Start/End\n[X] Single Clone Region\n[X] SIL/TIL\n[ ] Repeat\nText:\npUC Short Insert Library of pUC {puc name}',
+            'Type:\n[ ] Clone Information\n[X] Feature\nFeatures:\n[ ] Start/End\n[X] Single Clone Region\n[X] SIL/TIL\n[ ] Repeat\nText:\nTransposon Insertion Library of pUC {puc name}',
 
-'Type:\n[ ] Clone Information\n[X] Feature\nFeatures:\n[ ] Start/End\n[X] Single Clone Region\n[X] SIL/TIL\n[ ] Repeat\nText:\nTransposon Insertion Library of pUC {puc name}',
+            'Type:\n[ ] Clone Information\n[X] Feature\nFeatures:\n[ ] Start/End\n[ ] Single Clone Region\n[ ] SIL/TIL\n[X] Repeat\nText:\nMissing data. {x}bp of repeat Type {repeat type}.',
 
-'Type:\n[ ] Clone Information\n[X] Feature\nFeatures:\n[ ] Start/End\n[ ] Single Clone Region\n[ ] SIL/TIL\n[X] Repeat\nText:\nMissing data. {x}bp of repeat Type {repeat type}.',
+            'Type:\n[ ] Clone Information\n[X] Feature\nFeatures:\n[ ] Start/End\n[ ] Single Clone Region\n[ ] SIL/TIL\n[X] Repeat\nText:\nALU repeat of length {x}bp',
 
-'Type:\n[ ] Clone Information\n[X] Feature\nFeatures:\n[ ] Start/End\n[ ] Single Clone Region\n[ ] SIL/TIL\n[X] Repeat\nText:\nALU repeat of length {x}bp',
-
-'Type:\n[X] Clone Information\n[ ] Feature\nFeatures:\n[ ] Start/End\n[ ] Single Clone Region\n[ ] SIL/TIL\n[ ] Repeat\nText:\nSequence clone length {x}bp'
-]};
-
+            'Type:\n[X] Clone Information\n[ ] Feature\nFeatures:\n[ ] Start/End\n[ ] Single Clone Region\n[ ] SIL/TIL\n[ ] Repeat\nText:\nSequence clone length {x}bp'
+        ]
+    };
 </script>
-</body>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://cdn.foundation5.zurb.com/foundation.js"></script>
+<script type="text/javascript" src="tagManipulator.js"></script>
+
+</body>
 </html>
