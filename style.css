@@ -39,6 +39,7 @@ h1, h2, h3, h4 ,h5{
 #modal-text-container{
     background-color: #e5e5e5;
     padding: 1em;
+    line-height: 3em;
 }
 
 #modal-text-container input{

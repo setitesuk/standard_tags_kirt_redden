@@ -8,6 +8,7 @@
     var iStandardTagsLength = annotation_tags.annotation_tags.length;
     var iTagNumber;
 
+    var oModalInputField = "<input type='text' value=''>";
     var oModalTip = document.getElementById('modal-copy-tip');
     var oModalTextContainer = document.getElementById('modal-text-container');
     var oPopupModal = document.getElementById('text-modal');
@@ -23,6 +24,7 @@
     var i;
     var j;
     var k;
+    var l;
 
     oTagsContainer.innerHTML = "";
 
@@ -41,7 +43,6 @@
             }
 
             for (j = 1; j < aSplitTags.length; j += 1) {
-
 
                 if (aSplitTags[j].charAt(1) === "X" && aSplitTags[j].search("Clone Information") != -1) {
                     sMatchedType += "<li class='tag'>" + annotation_tags.annotation_tags[i] + "</li>";
@@ -99,13 +100,23 @@
 
 
     function updateModalText(event) {
+        var oTextNode;
         event.stopImmediatePropagation();
         oTextCopyButton.style.display = "block";
         oModalTip.style.display = "block";
+
         sModalText = oModalTextContainer.innerHTML;
-        sModalText = sModalText.replace(/<input type="text" onkeyup="this.dataset.value = this.value;" data-value="/ig, "");
-        sModalText = sModalText.replace(/"> /ig, " ");
-        oModalTextContainer.innerHTML = sModalText;
+
+        for (l = oModalTextContainer.children.length -1; l  >= 0; l -= 1) {
+
+            var modalInput = oModalTextContainer.children[l];
+            var modalInputValue = oModalTextContainer.children[l].value.trim();
+
+            oTextNode = document.createTextNode(modalInputValue);
+            oModalTextContainer.replaceChild(oTextNode, modalInput);
+
+        }
+
     }
 
 
@@ -116,13 +127,13 @@
 
 
     function addInputFieldToString(string) {
-        // KR - Needs to be refactored.
-        string = string.replace(/\{[a-z]*\s*[a-z]*\}/i, "<input type='text' onkeyup='this.dataset.value = this.value;' data-value=''> ");
+        string = string.replace(/{([a-zA-Z0-9 ]*)}/i, oModalInputField);
 
         oModalTextContainer.innerHTML = string;
 
         if (string.search("{") !== -1) {
             addInputFieldToString(string);
+            return;
         }
     }
 
