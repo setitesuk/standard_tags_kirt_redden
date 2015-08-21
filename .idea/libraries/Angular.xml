@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Angular" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/../../../libraries/angular.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../libraries/angular.js" />
+    </CLASSES>
+    <DOCUMENTATION>
+      <root url="https://drive.google.com/drive/u/0/folders/0BxgtL8yFJbacQmpCc1NMV3d5dnM" />
+    </DOCUMENTATION>
+    <SOURCES />
+  </library>
+</component>
