@@ -1,0 +1,84 @@
+body{
+    background: #e5e5e5;
+    color: #4d565d;
+}
+
+h1, h2, h3, h4 ,h5{
+    color: #4d565d;
+}
+
+#logo{
+    width: 100%;
+}
+
+.section-title{
+    padding: 1em;
+}
+
+.section-title h2{
+    font-family: 'HelveticaLT', Arial,sans-serif;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.section{
+    background: #ffffff;
+    margin: 0;
+    padding: 1em;
+}
+
+.section li.tag{
+    border-top: 1px solid #F3F3F3;
+    padding: 0.8em;
+}
+
+.section a.button{
+    margin-top: 0.8em;
+}
+
+#modal-text-container{
+    background-color: #e5e5e5;
+    padding: 1em;
+    line-height: 3em;
+}
+
+#modal-text-container input{
+    width: 60%;
+    display: inline;
+    margin: 0;
+}
+
+#text-modal{
+    position: fixed;
+}
+
+#text-modal h5{
+    margin-bottom: 1em;
+}
+
+#text-modal a#text-confirm{
+    margin-top: 3em;
+}
+
+#text-modal a#text-copy{
+    display: none;
+}
+
+#text-modal p#modal-copy-tip{
+    padding: 1em;
+    display: none;
+    color: #008CBA;
+    font-size: 0.8em;
+    margin-bottom: 0;
+}
+
+div#modal-background-overlay{
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
